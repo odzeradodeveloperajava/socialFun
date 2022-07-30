@@ -5,7 +5,7 @@ export const socialFun = createSlice({
   initialState: {
     cats: [],
     isLoggedIn: false,
-    userEmail: null,
+    userEmail: 'none',
   },
   reducers: {
     addCat: (state, action) => {

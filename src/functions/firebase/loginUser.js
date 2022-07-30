@@ -15,11 +15,6 @@ const loginUser = async () => {
     {
         res.data === 'auth/user-not-found' || res.data === 'auth/wrong-password' ? console.log(res.data) : setLoginData(res)
 
-    //console.log(res.data ,res.data._tokenResponse.idToken);
-    //console.log('login user', res.data._tokenResponse.email)
-    //localStorage.setItem('authToken', res.data._tokenResponse.idToken);
-
-
     }
     );
     return getImage

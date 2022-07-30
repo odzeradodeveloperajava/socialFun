@@ -1,15 +1,22 @@
 import axios from 'axios';
 import store from '../../redux/store';
-import { toggleUserIsLoggedIn } from '../../redux/reducers';
+import { toggleUserIsLoggedIn, setLoggedUserEmail } from '../../redux/reducers';
 
+const setLoggedData = (email) =>{
+  store.dispatch(toggleUserIsLoggedIn(true));
+  store.dispatch(setLoggedUserEmail(email))
+}
 
 const isUserLoggenIn = async () => {
     const isLoggenIn = await axios.get('http://localhost:9000/persistence').then((res)=> {
-        return res.data.email === false ? false : (store.dispatch(toggleUserIsLoggedIn(true)))
+        console.log(res.data.email)
+        return res.data.email === false ? false : (
+          setLoggedData(res.data.email)
+          )
         }
         );
   return (
-    null
+    isLoggenIn
   )
 }
 

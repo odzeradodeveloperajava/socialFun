@@ -1,11 +1,14 @@
 import React, {useEffect} from 'react';
-import Cats from './components/cats/cats';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import LoginScreen from './components/LoginScreen/LoginScreen';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import isUserLoggenIn from './functions/auth/isUserLoggenIn';
 
 const App = () => {
 
+  useEffect(()=>{
+    isUserLoggenIn()
+  },[])
 
   return (
     <Router>
