@@ -3,7 +3,7 @@ import store from '../../redux/store';
 import { toggleUserIsLoggedIn, setLoggedUserEmail } from '../../redux/reducers';
 
 let password = 'dupa1234';
-let email ='dupa1234@gmail.com';
+let email ='sl.tuszko@gmail.com';
 
 const setLoginData = (loginData) =>{
     store.dispatch(toggleUserIsLoggedIn(true));

@@ -9,7 +9,7 @@ const setLoggedData = (email) =>{
 
 const isUserLoggenIn = async () => {
     const isLoggenIn = await axios.get('http://localhost:9000/persistence').then((res)=> {
-        console.log(res.data.email)
+        console.log(res.data)
         return res.data.email === false ? false : (
           setLoggedData(res.data.email)
           )
