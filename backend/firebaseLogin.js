@@ -3,6 +3,7 @@ const { getAuth, signInWithEmailAndPassword, setPersistence, browserLocalPersist
 
 const loginUser = (email, password) => signInWithEmailAndPassword(getAuth(firebaseInit), email, password)
 .then((x) =>{
+    console.log('firebase logowanie ', x)
     setPersistence(getAuth(firebaseInit), browserLocalPersistence);
     return x
 })

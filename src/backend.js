@@ -32,7 +32,6 @@ const ccreateUser = () => app.post('/createuser',  async(req,res) =>{
     res.send(await createUser.createUser(req.body.email, req.body.password))
 })
 const lloginUser = () => app.post('/loginuser',  async(req,res) =>{
-    console.log(req.body.password, req.body.email)
     res.send(await loginUser.loginUser(req.body.email, req.body.password))
 })
 const hpersistence = () => app.get('/persistence',  async(req,res) =>{

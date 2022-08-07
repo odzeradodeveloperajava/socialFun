@@ -6,6 +6,7 @@ export const socialFun = createSlice({
     cats: [],
     isLoggedIn: false,
     userEmail: 'none',
+    errorCode: '',
   },
   reducers: {
     addCat: (state, action) => {
@@ -16,10 +17,13 @@ export const socialFun = createSlice({
     },
     setLoggedUserEmail: (state, action) => {
       state.userEmail = action.payload
+    },
+    setErrorCode: (state, action) => {
+      state.errorCode = action.payload
     }
   },
 })
 
-export const { addCat, toggleUserIsLoggedIn, setLoggedUserEmail } = socialFun.actions
+export const { addCat, toggleUserIsLoggedIn, setLoggedUserEmail, setErrorCode } = socialFun.actions
 
 export default socialFun.reducer
