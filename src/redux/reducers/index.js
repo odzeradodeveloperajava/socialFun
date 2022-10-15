@@ -5,7 +5,8 @@ export const socialFun = createSlice({
   initialState: {
     cats: [],
     isLoggedIn: false,
-    userEmail: 'none',
+    userDetails: 'none',
+    userName: '',
     errorCode: '',
   },
   reducers: {
@@ -15,8 +16,9 @@ export const socialFun = createSlice({
     toggleUserIsLoggedIn: (state, action) => {
       state.isLoggedIn = action.payload
     },
-    setLoggedUserEmail: (state, action) => {
-      state.userEmail = action.payload
+    setLoggedUserDetails: (state, action) => {
+      console.log('ustawiam')
+      state.userDetails = action.payload
     },
     setErrorCode: (state, action) => {
       state.errorCode = action.payload
@@ -24,6 +26,6 @@ export const socialFun = createSlice({
   },
 })
 
-export const { addCat, toggleUserIsLoggedIn, setLoggedUserEmail, setErrorCode } = socialFun.actions
+export const { addCat, toggleUserIsLoggedIn, setLoggedUserDetails, setErrorCode } = socialFun.actions
 
 export default socialFun.reducer

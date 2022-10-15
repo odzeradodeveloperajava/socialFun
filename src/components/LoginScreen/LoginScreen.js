@@ -4,12 +4,11 @@ import { useNavigate } from 'react-router-dom'
 import createUser from '../../functions/firebase/createUser';
 import loginUser from '../../functions/firebase/loginUser';
 import isUserLoggenIn from '../../functions/auth/isUserLoggenIn';
-import { async } from '@firebase/util';
 import { connect } from 'react-redux';
 
 
 
-const LoginScreen = ({isLoggedIn, userEmail, errorCode}) => {
+const LoginScreen = ({isLoggedIn, userDetails, errorCode}) => {
 
 const navigate = useNavigate();
 const [email, setEmail] = useState('');
@@ -26,8 +25,6 @@ const handleSubmit = async (e) =>{
   loginUser(password, email)
   setEmail('')
   setPassword('')
-  console.log(await loginUser(password, email))
-
 }
 
 const handleChangeEmail = (e) =>{
@@ -37,30 +34,36 @@ const handleChangePassword = (e) =>{
   setPassword(e.target.value)
 }
   return (
-    <>
-    <div> You are logged in : {isLoggedIn.toString()} </div>
-    <div> You are logged in : {userEmail.toString()} </div>
-    <div className='loginScreen--wrapper'>
-      <h1>{errorCode}</h1>
-      <form>
-         <input type='text' placeholder='email' onChange={handleChangeEmail} value={email} />
-         <input type='password' placeholder='password' onChange={handleChangePassword} value={password}/>
-        <button type='submit' onClick={handleSubmit} >Log In</button>
-      </form>
-        <button onClick={()=>createUser()}>Create User</button>
-        <button onClick={()=>loginUser()}>Login User</button>
-        <button onClick={()=>isUserLoggenIn()}>is loggen in?</button>
+    <div className='loginScreen'>
+    <div className='helper'>
+      <div> You are logged in : {isLoggedIn.toString()} </div>
+      <div> You are logged in : {userDetails.toString()} </div>
     </div>
-    </>
+    <div className='loginScreen--wrapper'>
+      <form className='loginForm'>
+          <h1 className='welcome'>Login</h1>
+          <h1 className='errorlogin'>{errorCode}</h1>
+          <label className='label'>Email</label>
+          <input className='input' type='text' placeholder='email' onChange={handleChangeEmail} value={email} />
+          <label className='label'>Password</label>
+          <input className='input' type='password' placeholder='password' onChange={handleChangePassword} value={password}/>
+          <button className='button buttonLogin' type='submit' onClick={handleSubmit} >Log In</button>
+          <button className='button buttonCreateuser' onClick={()=>createUser()}>Create User</button>
+      </form>
+        
+        
+    </div>
+    </div>
   )
 }
 
 const mapStateToProps = state => {
   return {
       isLoggedIn: state.socialFun.isLoggedIn,
-      userEmail: state.socialFun.userEmail,
+      userDetails: state.socialFun.userDetails,
       errorCode: state.socialFun.errorCode
   }
 }
 
 export default connect(mapStateToProps)(LoginScreen)
+//<button onClick={()=>isUserLoggenIn()}>is loggen in?</button>

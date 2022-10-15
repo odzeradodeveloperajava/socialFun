@@ -1,28 +1,30 @@
 import axios from 'axios';
 import store from '../../redux/store';
-import { toggleUserIsLoggedIn, setLoggedUserEmail, setErrorCode } from '../../redux/reducers';
+import { toggleUserIsLoggedIn, setLoggedUserDetails, setErrorCode } from '../../redux/reducers';
 
 //let password = 'dupa1234';
 //let email ='sl.tuszko@gmail.com';
 
 const setLoginData = (loginData) =>{
     store.dispatch(toggleUserIsLoggedIn(true));
-    store.dispatch(setLoggedUserEmail(loginData.data._tokenResponse.email))
-    return true
+    store.dispatch(setLoggedUserDetails(loginData.data._tokenResponse.email))
 }
-const invalidLoginData = () =>{
-    return false
+const invalidLoginData = (res) =>{
+    store.dispatch(setErrorCode(res.data.slice(5).replace('-', ' ')))
 }
 
 const loginUser = async (password, email) => {
-    const getImage = await axios.post('http://localhost:9000/loginuser', {password, email}).then((res)=>
+    if(password.length === 0 || email.length === 0){
+        store.dispatch(setErrorCode('fields cannot be empty'))
+    }
+    else{
+    const getImage = await axios.post('https://socialback.bieda.it/loginuser', {password, email}).then((res)=>
     {
-        //store.dispatch(setErrorCode(res.data.slice(5).replace('-', ' ')))
-        res.data === 'auth/user-not-found' || res.data === 'auth/wrong-password' || res.data === 'auth/invalid-email' ? invalidLoginData() : setLoginData(res)
-
+        res.data === 'auth/user-not-found' || res.data === 'auth/wrong-password' || res.data === 'auth/invalid-email' ? invalidLoginData(res) : setLoginData(res)
     }
     );
     return getImage
+}
 }
 
 export default loginUser
