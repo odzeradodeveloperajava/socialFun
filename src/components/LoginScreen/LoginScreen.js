@@ -3,12 +3,11 @@ import './LoginScreen.css'
 import { useNavigate } from 'react-router-dom'
 import createUser from '../../functions/firebase/createUser';
 import loginUser from '../../functions/firebase/loginUser';
-import isUserLoggenIn from '../../functions/auth/isUserLoggenIn';
 import { connect } from 'react-redux';
 
 
 
-const LoginScreen = ({isLoggedIn, userDetails, errorCode}) => {
+const LoginScreen = ({isLoggedIn, userDetails, errorCode, loginPending}) => {
 
 const navigate = useNavigate();
 const [email, setEmail] = useState('');
@@ -38,6 +37,7 @@ const handleChangePassword = (e) =>{
     <div className='helper'>
       <div> You are logged in : {isLoggedIn.toString()} </div>
       <div> You are logged in : {userDetails.toString()} </div>
+      <div> Pending : {loginPending.toString()} </div>
     </div>
     <div className='loginScreen--wrapper'>
       <form className='loginForm'>
@@ -50,8 +50,6 @@ const handleChangePassword = (e) =>{
           <button className='button buttonLogin' type='submit' onClick={handleSubmit} >Log In</button>
           <button className='button buttonCreateuser' onClick={()=>createUser()}>Create User</button>
       </form>
-        
-        
     </div>
     </div>
   )
@@ -61,9 +59,9 @@ const mapStateToProps = state => {
   return {
       isLoggedIn: state.socialFun.isLoggedIn,
       userDetails: state.socialFun.userDetails,
-      errorCode: state.socialFun.errorCode
+      errorCode: state.socialFun.errorCode,
+      loginPending: state.socialFun.loginPending
   }
 }
 
 export default connect(mapStateToProps)(LoginScreen)
-//<button onClick={()=>isUserLoggenIn()}>is loggen in?</button>

@@ -8,6 +8,7 @@ export const socialFun = createSlice({
     userDetails: 'none',
     userName: '',
     errorCode: '',
+    loginPending: false,
   },
   reducers: {
     addCat: (state, action) => {
@@ -22,10 +23,13 @@ export const socialFun = createSlice({
     },
     setErrorCode: (state, action) => {
       state.errorCode = action.payload
-    }
+    },
+    togglePending: (state, action) => {
+      state.loginPending = action.payload
+    },
   },
 })
 
-export const { addCat, toggleUserIsLoggedIn, setLoggedUserDetails, setErrorCode } = socialFun.actions
+export const { addCat, toggleUserIsLoggedIn, setLoggedUserDetails, setErrorCode, togglePending } = socialFun.actions
 
 export default socialFun.reducer
