@@ -26,5 +26,5 @@ const loginUser = async (password, email) => {
     return getImage
 }
 }
-
+//asdsa
 export default loginUser
