@@ -18,7 +18,7 @@ const loginUser = async (password, email) => {
         store.dispatch(setErrorCode('fields cannot be empty'))
     }
     else{
-    const getImage = await axios.post('https://socialback.bieda.it/loginuser', {password, email}).then((res)=>
+    const getImage = await axios.post('http://[2a01:4f9:2b:289c::475]:80/loginuser', {password, email}).then((res)=>
     {
         res.data === 'auth/user-not-found' || res.data === 'auth/wrong-password' || res.data === 'auth/invalid-email' ? invalidLoginData(res) : setLoginData(res)
     }
