@@ -1,5 +1,5 @@
 import React from 'react'
-import Cats from '../Cats/Cats.js'
+import Cats from './../Cats/Cats.js'
 import Header from '../Header/Header.js'
 import './MainWrapper.css'
 
