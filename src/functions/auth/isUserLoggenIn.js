@@ -10,7 +10,7 @@ const setLoggedData = (email) =>{
 }
 
 const isUserLoggenIn = async () => {
-    const isLoggenIn = await axios.get('http://[2a01:4f9:2b:289c::475]:80/persistence').then((res)=> {
+    const isLoggenIn = await axios.get('https://socialback.bieda.it/persistence').then((res)=> {
         console.log(res.data)
         return res.data.email === false ? store.dispatch(togglePending(false)) : (
           setLoggedData(res.data.email)

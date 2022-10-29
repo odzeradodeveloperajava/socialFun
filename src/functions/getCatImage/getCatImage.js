@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const getCatImage = async () => {
-    const getImage = await axios.get('http://[2a01:4f9:2b:289c::475]:80');
+    const getImage = await axios.get('https://socialback.bieda.it/');
     return getImage.data
 }
 
