@@ -1,6 +1,6 @@
 import axios from 'axios';
-import store from '../../redux/store';
-import { toggleUserIsLoggedIn, setLoggedUserDetails, togglePending } from '../../redux/reducers';
+import store from 'redux/store';
+import { toggleUserIsLoggedIn, setLoggedUserDetails, togglePending } from 'redux/reducers';
 store.dispatch(togglePending(true))
 
 const setLoggedData = (email) =>{

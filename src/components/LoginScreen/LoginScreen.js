@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import './LoginScreen.css'
+import 'components/LoginScreen/LoginScreen.css'
 import { useNavigate } from 'react-router-dom'
-import createUser from '../../functions/firebase/createUser';
-import loginUser from '../../functions/firebase/loginUser';
+import createUser from 'functions/firebase/createUser';
+import loginUser from 'functions/firebase/loginUser';
 import { connect } from 'react-redux';
 
 

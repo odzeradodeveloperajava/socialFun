@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import { connect } from 'react-redux';
-import { addCat } from '../../redux/reducers/index';
+import { addCat } from 'redux/reducers/index';
 import parse from 'html-react-parser';
-import addCatsToState from '../../functions/addCatsToState/addCatsToState';
-import './Cats.css';
+import addCatsToState from 'functions/addCatsToState/addCatsToState';
+import 'components/Cats/Cats.css';
 import { v4 as uuidv4 } from 'uuid';
 import InfiniteScroll from 'react-infinite-scroll-component'
 

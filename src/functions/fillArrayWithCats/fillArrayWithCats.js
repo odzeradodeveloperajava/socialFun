@@ -1,5 +1,5 @@
-import getCatImage from "../getCatImage/getCatImage"
-import getDogImage from "../getDogImage/getDogImage";
+import getCatImage from "functions/getCatImage/getCatImage"
+import getDogImage from "functions/getDogImage/getDogImage";
 
 
 const fillArrayWithCats = async (x) => {

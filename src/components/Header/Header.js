@@ -1,8 +1,8 @@
 import React from 'react'
-import firebaseLogOut from '../../functions/firebaseLogOut/firebaseLogOut'
-import './Header.css'
+import firebaseLogOut from 'functions/firebaseLogOut/firebaseLogOut'
+import 'components/Header/Header.css'
 import { useNavigate } from 'react-router-dom'
-import store from '../../redux/store';
+import store from 'redux/store';
 import { toggleUserIsLoggedIn, setLoggedUserDetails } from '../../redux/reducers';
 
 

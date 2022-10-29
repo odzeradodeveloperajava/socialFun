@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Navigate } from 'react-router-dom'
-import isUserLoggenIn from '../../functions/auth/isUserLoggenIn'
-import MainWrapper from '../MainWrapper/MainWrapper'
+import isUserLoggenIn from 'functions/auth/isUserLoggenIn'
+import MainWrapper from 'components/MainWrapper/MainWrapper'
 
 const ProtectedRoute = ({isLoggedIn}) => {
     useEffect(()=>{

@@ -1,6 +1,6 @@
-import fillArrayWithCats from "../fillArrayWithCats/fillArrayWithCats";
-import store from "../../redux/store";
-import { addCat } from "../../redux/reducers";
+import fillArrayWithCats from "functions/fillArrayWithCats/fillArrayWithCats";
+import store from "redux/store";
+import { addCat } from "redux/reducers";
 
 
 
