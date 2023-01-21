@@ -1,11 +1,17 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 
 const WelcomeScreen = ({isLoggedIn, loginPending}) => {
+
+    const [message, setMessage] = useState('')
     const navigate = useNavigate();
 
     useEffect(()=>{
+        setTimeout(() => {
+          setMessage('The service is unavailable')
+        }, 2000);
+
         if(isLoggedIn === true && loginPending === false){
           navigate('/main')
         }
@@ -16,7 +22,7 @@ const WelcomeScreen = ({isLoggedIn, loginPending}) => {
 
 
   return (
-    null
+    <h1>{message}</h1>
   )
 }
 

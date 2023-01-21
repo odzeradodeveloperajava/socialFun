@@ -1,16 +1,13 @@
-import React, {useEffect} from 'react';
+import jwtHandler from 'functions/authorization/jwtHandler';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import LoginScreen from './components/LoginScreen/LoginScreen';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import WelcomeScreen from './components/WelcomeScreen/WelcomeScreen';
-import isUserLoggenIn from './functions/auth/isUserLoggenIn';
-
 
 const App = () => {
 
-  useEffect(()=>{
-    isUserLoggenIn()
-  },[])
+  jwtHandler(localStorage.getItem('jwt'))
 
   return (
     <Router>
@@ -24,10 +21,4 @@ const App = () => {
   )
 }
 
-
 export default App
-//<Route path='/main' element={(
-//  <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-//  <Cats />
-//</div>
-//)} />

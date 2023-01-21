@@ -1,59 +1,81 @@
 import React, {useEffect, useState} from 'react'
 import 'components/LoginScreen/LoginScreen.css'
 import { useNavigate } from 'react-router-dom'
-import createUser from 'functions/firebase/createUser';
-import loginUser from 'functions/firebase/loginUser';
 import { connect } from 'react-redux';
+import logIn from 'functions/authorization/logIn';
+import createUser from 'functions/authorization/createUser';
+import { setErrorCode } from 'redux/reducers';
 
+const LoginScreen = ({isLoggedIn, userDetails, loginPending, errorCode, setErrorCode}) => {
 
+  
 
-const LoginScreen = ({isLoggedIn, userDetails, errorCode, loginPending}) => {
-
-const navigate = useNavigate();
-const [email, setEmail] = useState('');
-const [password, setPassword] = useState('')
-
-useEffect(()=>{
-  if(isLoggedIn === true){
-    navigate('/main')
+  const navigate = useNavigate();
+  useEffect(()=>{
+    if(isLoggedIn === true){
+      navigate('/main')
+    }
+  },[isLoggedIn, navigate])
+  const [currentAction, setCurrentAction] = useState('Login')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [repeatedPassword, setRepeatedPassword] = useState('')
+  const handleSubmit = async (e) =>{
+    setErrorCode('')
+    const sumbitAction = () => currentAction === 'Login' ? logIn(email,password) : createUser(email,password);
+    e.preventDefault()
+    sumbitAction()
+    setEmail('')
+    setPassword('')
+    
   }
-},[isLoggedIn, navigate])
+  const handleChangeAction = (e) =>{
+    setErrorCode('')
+    e.preventDefault()
+    setCurrentAction(currentAction === 'Login' ? 'Create account' : 'Login')
+  }
+  const handleChangeEmail = (e) =>{
+    setEmail(e.target.value)
+  }
+  const handleChangePassword = (e) =>{
+    setPassword(e.target.value)
+  }
+  const pass = <label className='label'>Repeat password
+  <input className='input' type='password' placeholder='Password' onChange={handleChangePassword} value={password}/>
+</label>
 
-const handleSubmit = async (e) =>{
-  e.preventDefault()
-  loginUser(password, email)
-  setEmail('')
-  setPassword('')
-}
+//temp > to delete
+  useEffect(()=>{
+    console.log(currentAction)
+  },[currentAction])
 
-const handleChangeEmail = (e) =>{
-  setEmail(e.target.value)
-}
-const handleChangePassword = (e) =>{
-  setPassword(e.target.value)
-}
   return (
     <div className='loginScreen'>
-    <div className='helper'>
-      <div> You are logged in : {isLoggedIn.toString()} </div>
-      <div> You are logged in : {userDetails.toString()} </div>
-      <div> Pending : {loginPending.toString()} </div>
-    </div>
-    <div className='loginScreen--wrapper'>
-      <form className='loginForm'>
-          <h1 className='welcome'>Login</h1>
-          <h1 className='errorlogin'>{errorCode}</h1>
-          <label className='label'>Email</label>
-          <input className='input' type='text' placeholder='email' onChange={handleChangeEmail} value={email} />
-          <label className='label'>Password</label>
-          <input className='input' type='password' placeholder='password' onChange={handleChangePassword} value={password}/>
-          <button className='button buttonLogin' type='submit' onClick={handleSubmit} >Log In</button>
-          <button className='button buttonCreateuser' onClick={()=>createUser()}>Create User</button>
-      </form>
-    </div>
-    </div>
-  )
-}
+         <div className='loginScreen--wrapper'>
+            <form className='loginForm'>
+              <h1 className='logo'>SocialFun</h1>
+              <p className='welcome'>{currentAction}</p>
+              <p className='errorlogin'>{errorCode}</p>
+              <div className='fieldset'>  
+                <label className='label'>Email
+                  <input className='input' type='text' placeholder='Email' onChange={handleChangeEmail} value={email} />
+                </label>
+                <label className='label'>Password
+                  <input className='input' type='password' placeholder='Password' onChange={handleChangePassword} value={password}/>
+                </label>
+              {currentAction === 'Create account' ? pass : null}
+              </div>
+              <button className='button buttonLogin' type='submit' onClick={handleSubmit} >Continue</button>
+              <div className='dividerWrapper'>
+                <span className='divider'>OR</span>
+              </div>
+              <button className='button buttonCreateuser' onClick={handleChangeAction}>{currentAction === 'Login' ? 'Create account' : 'Log in'}</button>
+              <p>Fogotten password?</p>
+            </form>
+          </div>
+      </div>
+  )}  
+
 
 const mapStateToProps = state => {
   return {
@@ -63,5 +85,11 @@ const mapStateToProps = state => {
       loginPending: state.socialFun.loginPending
   }
 }
+const mapDispatchToProps =(dispatch) =>{
+  return{
+    setErrorCode: (error)=> dispatch(setErrorCode(error))
+  }
+}
 
-export default connect(mapStateToProps)(LoginScreen)
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)

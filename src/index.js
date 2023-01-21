@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/store';
 import { Provider } from 'react-redux';
-import addCatsToState from './functions/addCatsToState/addCatsToState';
+import isServerUp from 'functions/isServerUp/isServerUp';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -16,7 +16,10 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
-addCatsToState()
+//check if server is responding
+isServerUp()
+
+//addCatsToState()
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
