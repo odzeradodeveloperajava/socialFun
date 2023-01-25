@@ -6,9 +6,7 @@ import logIn from 'functions/authorization/logIn';
 import createUser from 'functions/authorization/createUser';
 import { setErrorCode } from 'redux/reducers';
 
-const LoginScreen = ({isLoggedIn, userDetails, loginPending, errorCode, setErrorCode}) => {
-
-  
+const LoginScreen = ({isLoggedIn, errorCode, setErrorCode}) => {
 
   const navigate = useNavigate();
   useEffect(()=>{
@@ -21,13 +19,13 @@ const LoginScreen = ({isLoggedIn, userDetails, loginPending, errorCode, setError
   const [password, setPassword] = useState('')
   const [repeatedPassword, setRepeatedPassword] = useState('')
   const handleSubmit = async (e) =>{
+    const sumbitAction = () => currentAction === 'Login' ? logIn(email,password) : createUser(email,password,repeatedPassword);
     setErrorCode('')
-    const sumbitAction = () => currentAction === 'Login' ? logIn(email,password) : createUser(email,password);
     e.preventDefault()
     sumbitAction()
     setEmail('')
     setPassword('')
-    
+    setRepeatedPassword('')
   }
   const handleChangeAction = (e) =>{
     setErrorCode('')
@@ -40,8 +38,11 @@ const LoginScreen = ({isLoggedIn, userDetails, loginPending, errorCode, setError
   const handleChangePassword = (e) =>{
     setPassword(e.target.value)
   }
+  const handleChangeRepeatedPassword = (e) =>{
+    setRepeatedPassword(e.target.value)
+  }
   const pass = <label className='label'>Repeat password
-  <input className='input' type='password' placeholder='Password' onChange={handleChangePassword} value={password}/>
+  <input className='input' type='password' placeholder='Password' onChange={handleChangeRepeatedPassword} value={repeatedPassword}/>
 </label>
 
 //temp > to delete
@@ -80,9 +81,7 @@ const LoginScreen = ({isLoggedIn, userDetails, loginPending, errorCode, setError
 const mapStateToProps = state => {
   return {
       isLoggedIn: state.socialFun.isLoggedIn,
-      userDetails: state.socialFun.userDetails,
       errorCode: state.socialFun.errorCode,
-      loginPending: state.socialFun.loginPending
   }
 }
 const mapDispatchToProps =(dispatch) =>{

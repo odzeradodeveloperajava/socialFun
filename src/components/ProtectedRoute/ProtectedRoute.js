@@ -4,10 +4,8 @@ import { Navigate } from 'react-router-dom'
 import MainWrapper from 'components/MainWrapper/MainWrapper'
 
 const ProtectedRoute = ({isLoggedIn}) => {
-    console.log('aaaa', {isLoggedIn})
     return (isLoggedIn === true ? <MainWrapper /> : <Navigate to='/' />)
 }
-
 const mapStateToProps = state => {
     return {
         isLoggedIn: state.socialFun.isLoggedIn

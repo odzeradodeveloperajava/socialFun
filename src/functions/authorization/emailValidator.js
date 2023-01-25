@@ -7,5 +7,4 @@ const emailValidator = (email) =>{
         return false
     }
 }
-
 export default emailValidator

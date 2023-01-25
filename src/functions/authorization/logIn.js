@@ -3,7 +3,6 @@ import store from "redux/store";
 import { setErrorCode, toggleUserIsLoggedIn, setLoggedUserDetails } from "redux/reducers";
 
 const logIn = async (email, password) => {
-
     const handler = (res) =>{
         console.log(res.data.status);
         if(res.data.status === 'failure'){
@@ -16,7 +15,6 @@ const logIn = async (email, password) => {
             store.dispatch(toggleUserIsLoggedIn(true))
         }
     }
-
     try{
         await axios.post('https://socialback.bieda.it/login', {email, password}, {withCredentials: true}).then((res)=> handler(res) );
 
