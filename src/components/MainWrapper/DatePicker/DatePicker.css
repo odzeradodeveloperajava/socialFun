@@ -1,8 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@100&display=swap');
+
 .datePicker{
+    font-family: 'Pacifico', cursive;
+    font-family: 'Roboto', sans-serif;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 }
-.day{
+.datePickerCur{
+    background-color: lightgray;
+    font-family: 'Pacifico', cursive;
+    font-family: 'Roboto', sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+.monthName{
+    font-family: 'Pacifico', cursive;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    font-size: 16px;
+}
+.current{
+    background-color: lightgray;
+}
+.current, .notCurrent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     padding: 10px;
+    border-radius: 10px;
+    height: 338px;
 }

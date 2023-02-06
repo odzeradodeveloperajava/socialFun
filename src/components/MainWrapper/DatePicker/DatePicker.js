@@ -1,22 +1,38 @@
 
-import React from "react";
-import Day from "./Day";
-import { getMonth } from "functions/calendarHelper/calendarHelper";
+import React, { useEffect, cloneElement } from "react";
+import { getMonth, getMontName, getYear } from "functions/calendarHelper/calendarHelper";
 import './DatePicker.css'
+import scrollToCurrentMonth from "functions/scrollToCurrentMonth/scrollToCurrentMonth";
 
-export default function Month() {
-const month = getMonth(1)
-console.table(month)
 
+export default function DatePicker({month, iterator, children}) {
+
+
+
+  useEffect(()=>{
+    scrollToCurrentMonth()
+  },[])
+
+  const name = () =>{
+    if(getMontName(iterator) === getMontName() && getYear(iterator) === getYear()){
+      return "current"
+    } else {
+      return "notCurrent"
+    } 
+  }
   return (
-    <div className="datePicker">
-      {month.map((row, i) => (
-        <React.Fragment key={i}>
-          {row.map((day, idx) => (
-            <Day day={day} key={idx} rowIdx={i} />
+    <div className={name()}>
+        <h1 className='monthName'>{[getMontName(iterator), getYear(iterator)]}</h1>
+        <div className="datePicker">
+          {month.map((row, i) => (
+            <React.Fragment key={i}>
+              {row.map((day, idx) => (
+                cloneElement(children,{day, key: idx, rowIdx: i, iterator})
+              ))}
+            </React.Fragment>
           ))}
-        </React.Fragment>
-      ))}
+        </div>
     </div>
   );
 }
+//<Day day={day} key={idx} rowIdx={i} iterator={iterator} />

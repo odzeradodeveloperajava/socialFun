@@ -11,11 +11,11 @@ const MainWrapper = () => {
   return (
     <div className='mainWrapper'>
         <Header />
-        <DatePicker />
         <Calendar />
-        <Cats />
+   
     </div>
   )
 }
 
 export default MainWrapper
+//     <Cats />

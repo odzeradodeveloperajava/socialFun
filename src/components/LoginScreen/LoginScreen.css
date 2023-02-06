@@ -10,6 +10,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    flex-shrink: 1;
 }
 .loginScreen--wrapper{
     display: flex;
@@ -17,7 +18,7 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    width: 420px;
+    max-width: 420px;
     height: 660px;
     background-color: white;
     box-shadow: rgb(0 0 0 / 8%) 0px 4.48rem 5.27rem, rgb(0 0 0 / 6%) 0px 1.87rem 2.2rem, rgb(0 0 0 / 5%) 0px 1rem 1.17rem, rgb(0 0 0 / 4%) 0px 0.56rem 0.66rem, rgb(0 0 0 / 3%) 0px 0.29rem 0.35rem, rgb(0 0 0 / 10%) 0px 0px 0.8rem;
@@ -28,6 +29,7 @@
     color: black;
     font-size: 80px;
     margin: 0px;
+    width: auto;
 }
 .welcome{
     color: black;
@@ -78,7 +80,7 @@
     outline: none;
     color: rgb(0, 0, 0);
     height: 40px;
-    width: 360px;
+    max-width: 360px;
     margin: 0 30px;
     font-size: 16px;
 }

@@ -10,6 +10,7 @@ export const socialFun = createSlice({
     errorCode: '',
     loginPending: false,
     isServerUp: false,
+    appHeight: 0
   },
   reducers: {
     addCat: (state, action) => {
@@ -30,9 +31,12 @@ export const socialFun = createSlice({
     toggleServerUp: (state, action) => {
       state.isServerUp = action.payload
     },
+    setAppHeight: (state, action) => {
+      state.appHeight = action.payload
+    },
   },
 })
 
-export const { addCat, toggleUserIsLoggedIn, setLoggedUserDetails, setErrorCode, togglePending, toggleServerUp } = socialFun.actions
+export const { addCat, toggleUserIsLoggedIn, setLoggedUserDetails, setErrorCode, togglePending, toggleServerUp, setAppHeight } = socialFun.actions
 
 export default socialFun.reducer
