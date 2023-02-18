@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@100&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:ital,wght@0,100;0,400;1,300&display=swap');
 .datePicker{
     font-family: 'Pacifico', cursive;
     font-family: 'Roboto', sans-serif;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    font-weight: 300;
+display: flex;
+flex-direction: column;
+
 }
 .datePickerCur{
     background-color: lightgray;
@@ -14,22 +14,42 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    font-weight: 300;
 }
 .monthName{
+    color:rgb(247, 26, 26);
     font-family: 'Pacifico', cursive;
     font-family: 'Roboto', sans-serif;
     margin: 0;
     font-size: 16px;
 }
 .current{
-    background-color: lightgray;
+    background-color: rgba(232, 232, 232, 0);
 }
 .current, .notCurrent{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 10px;
     border-radius: 10px;
-    height: 338px;
+ 
+}
+.xxx{
+    display: flex;
+    flex-direction: column;
+}
+.row{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.linex{
+    height: 0px;
+    width: 100%;
+    font-size: 11px;
+    transition: height 0.15s ease-out;
+
+}
+.lineActive{
+    height: 100px;
+    background-color: yellow;
 }

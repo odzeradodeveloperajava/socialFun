@@ -14,11 +14,6 @@ for (let i = -12; i <=12; i++){
 }
 
 const Calendar = () => {
-  useEffect(()=>{
-    console.log('kalen')
-  },[])
-
-
   return (
     montsArray.map((x,i)=> <DatePicker key={x} month={getMonth(x)} iterator={x} children={<Day />}/>)
   )

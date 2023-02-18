@@ -1,0 +1,36 @@
+@mixin day{
+    height: 50px;
+    width: 50px;
+    
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+    color: black;
+    border-top: 1px solid rgb(219, 219, 219);
+}
+
+.cur{
+    font-weight: 400;
+    @include day;
+}
+.day:hover{
+    font-weight: 400;
+    background-color: rgb(139, 139, 139);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+}
+.day{
+    @include day;
+}
+.today{
+    box-sizing: border-box;
+    background-color: crimson;
+    color: white;
+    border-radius: 30px;
+    font-weight: 800;
+    border: 8px solid white;
+}
+
