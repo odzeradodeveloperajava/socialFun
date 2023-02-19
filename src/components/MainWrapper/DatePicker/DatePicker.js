@@ -17,7 +17,6 @@ export default function DatePicker({month, iterator, children}) {
     } else {
       //console.log(offset(currentMonthElement.current))
     }
-    
   },[])
 
   const name = () =>{
@@ -25,32 +24,48 @@ export default function DatePicker({month, iterator, children}) {
       return "current"
     } else {
       return "notCurrent"
-    } 
+    }
   }
-
-  
   const createClassName = (rowData) =>{
     return rowData.map(x => x.format('DD-MM-YY')).join(' ')+' linex';
   }
 
   return (
-    <div className={name()} id={name()} ref={currentMonthElement}>
+    <>
+      <div className={name()} id={name()} ref={currentMonthElement}>
         <h1 className='monthName'>{[getMonthName(iterator),' ', getYear(iterator)]}</h1>
-        <div className="datePicker">
-          {month.map((row, i) => (
-            <React.Fragment key={i}>
-              <div className="row" key={i}>
-                {row.map((day, idx) => (
-                  cloneElement(children,{day, key: idx, rowIdx: i, iterator, month: getMonthName(iterator)})
-                ))}
+          <div className="datePicker">
+            {month.map((row, i) => (
+              <React.Fragment key={i}>
+                <div className="row" key={i}>
+                  {row.map((day, idx) => (
+                    cloneElement(children,{day, key: idx, rowIdx: i, iterator, month: getMonthName(iterator)})
+                  ))}
+                </div>
+              <div className={createClassName(row)}>
               </div>
-            <div className={createClassName(row)}>
-                  <div></div>
-            </div>
-            </React.Fragment>
+           </React.Fragment>
           ))}
-        </div>
+      </div>
     </div>
+    </>
   );
 }
-//<Day day={day} key={idx} rowIdx={i} iterator={iterator} />
+////<Day day={day} key={idx} rowIdx={i} iterator={iterator} />
+//<div className={name()} id={name()} ref={currentMonthElement}>
+//<h1 className='monthName'>{[getMonthName(iterator),' ', getYear(iterator)]}</h1>
+//<div className="datePicker">
+//  {month.map((row, i) => (
+//    <React.Fragment key={i}>
+//      <div className="row" key={i}>
+//        {row.map((day, idx) => (
+//          cloneElement(children,{day, key: idx, rowIdx: i, iterator, month: getMonthName(iterator)})
+//        ))}
+//      </div>
+//    <div className={createClassName(row)}>
+//          <div></div>
+//    </div>
+//    </React.Fragment>
+//  ))}
+//</div>
+//</div>

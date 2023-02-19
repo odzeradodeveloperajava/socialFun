@@ -25,5 +25,5 @@ export function getYear(month = dayjs().month()){
 }
 export function getCurrDateArr(){
   const currentDate = dayjs()
-  return [currentDate.format('DD'), currentDate.format('MM'), currentDate.format('YYYY')]
+  return [currentDate.format('DD-MM-YY') ,currentDate.format('DD'), currentDate.format('MM'), currentDate.format('YY')]
 }
