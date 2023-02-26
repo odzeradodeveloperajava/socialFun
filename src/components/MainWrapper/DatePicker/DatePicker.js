@@ -5,25 +5,17 @@ import './DatePicker.css'
 import scrollToCurrentMonth from "functions/scrollToCurrentMonth/scrollToCurrentMonth";
 import offset from 'document-offset'
 
-export default function DatePicker({month, iterator, children}) {
+export default function DatePicker({ month, iterator, children}) {
+
+
 
   const currentMonthElement = useRef(null);
-
-  useEffect(()=>{
-    //console.log(currentMonthElement.current)
-    scrollToCurrentMonth()
-    if(currentMonthElement.current == 'null'){
-      return null
-    } else {
-      //console.log(offset(currentMonthElement.current))
-    }
-  },[])
-
+  const lastMonth = useRef(null);
   const name = () =>{
     if(getMonthName(iterator) === getMonthName() && getYear(iterator) === getYear()){
-      return "current"
+      return `current ${getMonthName(iterator)+getYear(iterator)}`
     } else {
-      return "notCurrent"
+      return `notCurrent ${getMonthName(iterator)+getYear(iterator)}`
     }
   }
   const createClassName = (rowData) =>{
@@ -32,8 +24,17 @@ export default function DatePicker({month, iterator, children}) {
 
   return (
     <>
-      <div className={name()} id={name()} ref={currentMonthElement}>
+      <div className={name()} id={name()} ref={name() === 'current' ? currentMonthElement : lastMonth}>
         <h1 className='monthName'>{[getMonthName(iterator),' ', getYear(iterator)]}</h1>
+        <div className='daysOfTheWeek'>
+          <div>S</div>
+          <div>M</div>
+          <div>T</div>
+          <div>W</div>
+          <div>T</div>
+          <div>F</div>
+          <div>S</div>
+        </div>
           <div className="datePicker">
             {month.map((row, i) => (
               <React.Fragment key={i}>
@@ -43,6 +44,9 @@ export default function DatePicker({month, iterator, children}) {
                   ))}
                 </div>
               <div className={createClassName(row)}>
+                <div className='eventBarTopRow'>
+                  <button >x</button>
+                </div>
               </div>
            </React.Fragment>
           ))}
@@ -69,3 +73,29 @@ export default function DatePicker({month, iterator, children}) {
 //  ))}
 //</div>
 //</div>
+//
+//useEffect(()=>{
+//  console.log(x)
+//  const observer = new IntersectionObserver((entries)=>{
+//            if(entries[0].isIntersecting === true){
+//              if(last === true){
+//                console.log('dodaje na koneic')
+//                handler()
+//              } else if( last === false) {
+//                //console.log('moaj wyskoosc to', lastMonth.current.offsetHeight)
+//                //console.log('aktualny sroll to ', document.documentElement.scrollTop)
+//                handlerx(lastMonth.current.offsetHeight)
+//                //console.log('dodaje minus')
+//              }
+//        }})
+//
+//  if(last === true || op === 0){
+//    observer.observe(lastMonth.current)
+//    }
+//  if(currentMonthElement.current !== null || undefined){
+//  var topPos = currentMonthElement.current.getBoundingClientRect().top;
+//  window.scroll(null, topPos-30)
+//  }
+//})
+//
+

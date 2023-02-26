@@ -16,4 +16,9 @@ code {
 
 body::-webkit-scrollbar { 
   display: none;  /* Safari and Chrome */
+  overflow: hidden;
+}
+
+html{
+  overflow: hidden;
 }

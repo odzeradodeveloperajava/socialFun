@@ -13,17 +13,15 @@ import { setAppHeight } from 'redux/reducers';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  //<React.StrictMode>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>
+  //</React.StrictMode>
 );
 //check if backend server is responding
 isServerUp()
-//check app height for determine height of current month 
-const resizeObserver = new ResizeObserver(x =>  store.dispatch(setAppHeight(x[0].target.clientHeight)))
-resizeObserver.observe(document.body)
+
 
 
 

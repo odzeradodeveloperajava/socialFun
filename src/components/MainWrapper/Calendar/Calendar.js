@@ -1,53 +1,58 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef, useCallback} from 'react'
 import DatePicker from './../DatePicker/DatePicker'
 import {getMonth} from './../../../functions/calendarHelper/calendarHelper'
 import Day from '../DatePicker/Day'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-const montsArray = [];
-for (let i = -12; i <=12; i++){
-  montsArray[i+12] = i
-  //console.log(montsArray)
-  if(i === 12){
-    montsArray.sort((a,b)=> a-b)
-  }
-}
 
-const bla = () => console.log('x')
+
+
+
 
 const Calendar = () => {
-  return (
-    <div className='calendar'>
-      <InfiniteScroll
-      dataLength={5} //This is important field to render the next data
-      next={()=>bla()}
-      hasMore={true}
-      loader={<h4>Loading...</h4>}
+  const initialArray = [4,3,2,1,0,-1,-2]
+  const [months, setMonths] = useState(initialArray)
+  const addMonthHandler = () => setMonths(x => [x[0]+1,...x ])
+  const addMinusMonthHandler = () =>{
+    setMonths(x => [...x, x[x.length-1]-1])
+  }
 
-      endMessage={
-        <p style={{ textAlign: 'center' }}>
-          <b>Yay! You have seen it all</b>
-        </p>
-      }
+  return (
+    <React.Fragment>
+      <div
+        id="scrollableDiv"
+        style={{
+          height: 'calc(100vh)',
+          overflow: "auto",
+          display: "flex",
+          flexDirection: "column-reverse",
+          minWidth: '370px',
+          maxWidth: '400px'
+        }}
       >
-      {<h1>blaa</h1>}
-    </InfiniteScroll>
-    {montsArray.map((x,i)=> <DatePicker key={x} month={getMonth(x)} iterator={x} children={<Day />}/>)}
     <InfiniteScroll
-      dataLength={5} //This is important field to render the next data
-      next={()=>bla()}
+      dataLength={months.length} //This is important field to render the next data
+      next={()=>addMinusMonthHandler()}
       hasMore={true}
       loader={<h4>Loading...</h4>}
-      endMessage={
-        <p style={{ textAlign: 'center' }}>
-          <b>Yay! You have seen it all</b>
-        </p>
-      }
+      style={{  display: "flex",
+                flexDirection: "column-reverse",
+                display: 'flex',
+                alignItems: 'center',
+                width: '100%' }}
+      inverse={true}
+      scrollableTarget="scrollableDiv"
       >
-      {<h1>blaa</h1>}
+      {months.map((x,i)=>{
+          return(
+            <DatePicker monthArray={months} handlerx={(c)=>addMonthHandler(c)} key={i} month={getMonth(x)} iterator={x} children={<Day />} />
+          )
+      })}
+
     </InfiniteScroll>
     </div>
-    )
+    </React.Fragment>
+  )
 }
 
 export default Calendar
