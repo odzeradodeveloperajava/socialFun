@@ -10,7 +10,10 @@ export const socialFun = createSlice({
     errorCode: '',
     loginPending: false,
     isServerUp: false,
-    appHeight: 0
+    isSidebarOpen: false,
+    selectedMonth: [2023, 1],
+    focusedOnDay: false,
+    initialSlide: 0,
   },
   reducers: {
     addCat: (state, action) => {
@@ -34,9 +37,21 @@ export const socialFun = createSlice({
     setAppHeight: (state, action) => {
       state.appHeight = action.payload
     },
+    setSidebarOpen: (state, action) => {
+      state.isSidebarOpen = action.payload
+    },
+    setSelectedMonth: (state, action) => {
+      state.selectedMonth = action.payload
+    },
+    toggleFocusedOnDay: (state, action) => {
+      state.focusedOnDay = action.payload
+    },
+    setInitialSlide: (state, action) => {
+      state.initialSlide = action.payload
+    },
   },
 })
 
-export const { addCat, toggleUserIsLoggedIn, setLoggedUserDetails, setErrorCode, togglePending, toggleServerUp, setAppHeight } = socialFun.actions
+export const { addCat, toggleUserIsLoggedIn, setLoggedUserDetails, setErrorCode, togglePending, toggleServerUp, setSidebarOpen, setSelectedMonth, toggleFocusedOnDay, setInitialSlide } = socialFun.actions
 
 export default socialFun.reducer

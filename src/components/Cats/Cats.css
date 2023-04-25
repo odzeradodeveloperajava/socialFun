@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300&family=Open+Sans:wght@300&family=Orbitron:wght@500&family=Ubuntu:wght@300;400;500&display=swap');
 
 #root{
-    background-color: white;
     display: flex;
     justify-content: center;
 }

@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:ital,wght@0,100;0,400;1,300&display=swap');
+.sidebarWrapper{
+    position: absolute;
+    top: 0;
+    left: -60%;
+    z-index: 30;
+    background-color: rgba(0, 0, 0, 0.796);
+    height: 100%;
+    width: 60%;
+    color: white;
+    transition: left 0.3s ease-out;
+    border-right: 1px solid grey;
+}
+.sidebarLogo{
+    margin-top: 100px;
+}
+.sidebarButtonDivider{
+    display: block;
+    border-top: 5px dotted gray;
+    margin: 0 20%;
+}
+.sidebar-button{
+    font-family: 'Pacifico', cursive;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-size: 25px;
+    cursor: pointer;
+}

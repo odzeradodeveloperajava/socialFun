@@ -1,0 +1,51 @@
+.calendarWrapper{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: grid !important;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    height: 90%;
+}
+.calendarWrapper__year{
+    text-align: center;
+    width: 100%;
+    color: white;
+    font-weight: 600;
+    margin: 30px 0;
+    font-size: 25px;
+}
+@media (max-width: 1360px){
+    .calendarWrapper{
+        grid-template-columns: repeat(2, minmax(100px, 200px));
+        height: 80%;
+    }
+}
+@media (max-height: 870px){
+    .calendarWrapper__year{
+        margin: 8px 0;
+    }
+}
+@media (max-height: 870px){
+    .calendarWrapper{
+        height: 70%;
+    }
+}
+@media (max-height: 490px){
+    .calendarWrapper{
+        grid-template-columns: repeat(4, minmax(100px, 200px));
+        height: 80%;
+    }
+}
+@media (max-height: 300px){
+    .calendarWrapper{
+        grid-template-columns: repeat(6, minmax(100px, 200px));
+        height: 80%;
+    }
+}
+.calendarWrapper__year{
+        margin: 20px 0;
+        font-size: 20px;
+}
+

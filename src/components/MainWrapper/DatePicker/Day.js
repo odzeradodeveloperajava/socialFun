@@ -1,36 +1,48 @@
 import {getCurrDateArr} from "functions/calendarHelper/calendarHelper";
 import React, {useRef} from "react";
+import { connect } from "react-redux";
 import './Day.scss'
-export default function Day({ day, key,  rowIdx, iterator, month }) {
+import { toggleFocusedOnDay, setInitialSlide } from "redux/reducers";
 
-  const clickedMonth = useRef(null)
+
+const Day = ({ day, key,  rowIdx, iterator, month, isInYearView, toggleFocusedOnDay, setInitialSlide}) =>  {
+
+
+
 
   const clickHandler = () =>{
-    const scrolldiv = () =>  document.getElementById('scrollableDiv')
-    console.log(scrolldiv())
-    const activeElement = () => document.getElementsByClassName('lineActive')
-    const closeActive = () => activeElement().length === 0  ? null : activeElement()[0].classList.remove('lineActive')
-    closeActive();
-    //(() => { return activeElement().length === 0  ? null : activeElement()[0].classList.remove('lineActive') })()
-    const element = () => document.getElementsByClassName(day.format('DD-MM-YY'))
-    const checkDay = day.format('DD') > 15 ? element().length-1 : 0;
-    element()[checkDay].classList.add("lineActive")
-    const monthActive = () => document.getElementsByClassName((day.format('MMMMYYYY')))
-    console.log(monthActive()[0].offsetParent)
-    const dupa = () => monthActive()[0].offsetParent.getElementsByClassName((day.format('MMMMYYYY')))
-    console.log(dupa()[0])
-    setTimeout(function(){scrolldiv().scroll({
-      top: dupa()[0].offsetTop-30,
-      left: null,
-      behavior: 'smooth'
+    const clickedDay = day.format('DD-MM-YY')
+    const parentEl = document.getElementsByClassName('swiper-slide-active')[0]
+    const parent = parentEl.getElementsByClassName('month')[0]
+    const otherRows = parent.getElementsByClassName('row')
+    const otherRowsArr = [].slice.call(otherRows)
+    console.log(otherRowsArr)
+    otherRowsArr.map((x,i)=> {
+      if(x.id.includes(clickedDay)){
+        otherRowsArr.splice(i,1)
+        otherRowsArr.map( x => x.classList.toggle('rowHidden'))
+        console.log('initial slide to ', i)
+        setInitialSlide(i)
+      }
     })
-    }, 160)
-   
-
+    setTimeout(toggleFocusedOnDay(true), 250)
+    //toggleFocusedOnDay(true)
   }
+  const clickHandler1 = () => {
+    //const clickedDay = day.format('DD-MM-YY');
+    //const activeSlide = document.querySelector('.swiper-slide-active');
+    //const parent = activeSlide.querySelector('.month');
+    //const otherRows = Array.from(parent.querySelectorAll('.row:not([id*="'+clickedDay+'"])'));
+    //otherRows.forEach(row => row.classList.toggle('rowHidden'));
+    toggleFocusedOnDay(true)
+  };
+  
+
+
     const styleDay = () => {
-      const compareDate = ( day.format('DD-MM-YY') === getCurrDateArr()[0]) ? 'today' : ( (day.format('MM') === getCurrDateArr()[2] && day.format('YY') === getCurrDateArr()[3]) ? 'currentMonth' : 'everyDay' );
-      return compareDate
+      const compareDate = ( day.format('DD-MM-YY') === getCurrDateArr()[0]) ? 'today' :  'everyDay' 
+      const isFocused = isInYearView !== true ? (compareDate+' focused') : compareDate
+      return isFocused
     }
     if(day.format('MMMM') === month){
       return (
@@ -40,7 +52,20 @@ export default function Day({ day, key,  rowIdx, iterator, month }) {
       )
     } else {
       return (
-        <div></div>
+        <div className="emptyDay"></div>
       )
     }
 }
+const mapStateToProps = state => {
+  return {
+      focusedOnDay: state.socialFun.focusedOnDay
+  }
+}
+const mapDispatchToProps =(dispatch) =>{
+  return{
+    toggleFocusedOnDay: (bool)=> dispatch(toggleFocusedOnDay(bool)),
+    setInitialSlide: (num)=> dispatch(setInitialSlide(num))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Day)

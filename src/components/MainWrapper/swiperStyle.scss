@@ -1,0 +1,51 @@
+//This file contain overwritings of swiper default styles
+
+// next and prev arrows in year overview
+#yearPicker > .swiper-button-prev, #yearPicker > .swiper-button-next{
+    color: rgb(255, 255, 255);
+    width: 28px;
+    height: 28px;
+    top: 18px;
+}
+  
+@container (min-width: 1px){
+    #yearPicker > .swiper-button-prev{
+        left: 200px;
+        background-color: red;
+        
+    }
+    #yearPicker > .swiper-button-next{
+        right: 200px
+    }
+}
+
+// next and prev arrows in focused on month mode
+#monthPicker > .swiper-button-prev, #monthPicker > .swiper-button-next{
+    color: rgb(255, 255, 255);
+    top: 19px;
+  }
+@media (min-width: 600px){
+  #monthPicker > .swiper-button-prev{
+      left: 150px
+  }
+  #monthPicker > .swiper-button-next{
+      right: 150px
+  }
+}
+
+// next and prev arrows in focused on day mode
+#swiperEditingMode > .swiper-button-prev, #swiperEditingMode > .swiper-button-next{
+    z-index: 30 !important;
+    color: rgb(12, 120, 235);
+    width: 28px;
+    aspect-ratio: 1;
+    top: 18px;
+    scale: 0;
+    
+}
+#swiperEditingMode > .swiper-button-prev{
+    left: -10px;
+}
+#swiperEditingMode > .swiper-button-next{
+    right: -10px;
+}

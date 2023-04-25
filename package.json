@@ -23,6 +23,7 @@
     "fs": "^0.0.1-security",
     "html-react-parser": "^1.4.14",
     "install": "^0.13.0",
+    "lodash": "^4.17.21",
     "nodemon": "^2.0.18",
     "patch": "^0.0.1",
     "path": "^0.12.7",
@@ -37,6 +38,7 @@
     "redux": "^4.2.0",
     "request": "^2.88.2",
     "sass": "^1.58.0",
+    "swiper": "^9.1.0",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
